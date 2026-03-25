@@ -1,10 +1,12 @@
 <div align="center">
 
-<img src="assets/agent-planner-hero.png" alt="agent-planner — Vedic Arsenal" width="100%" />
+<img src="assets/agent-planner-hero.png" alt="agent-planner — Vedic Arsenal by Darshankumar Joshi" width="100%" />
 
 # ⚡ agent-planner
 
-### *विधाता* — Vidhata — the cosmic planner, architect of fate
+<h3><em>विधाता</em></h3>
+
+> *Vidhata — the cosmic planner, architect of fate*
 
 **Task decomposition and execution planning for LLM agents — Step, Plan, Planner, PlanExecutor. Zero dependencies.**
 
@@ -39,6 +41,19 @@ Or clone directly:
 git clone https://github.com/darshjme/agent-planner.git
 cd agent-planner
 pip install -e .
+```
+
+## How It Works
+
+```mermaid
+flowchart LR
+    A[Input] --> B[agent-planner]
+    B --> C{Process}
+    C -- Success --> D[Output]
+    C -- Error --> E[Handle / Retry]
+    E --> B
+    style B fill:#6b21a8,color:#fff
+    note["Planner — Zero Dependencies"]
 ```
 
 ## Quick Start
@@ -90,7 +105,7 @@ MIT — use freely, build freely.
 
 <div align="center">
 
-**Built with ⚡ by [Darshankumar Joshi](https://github.com/darshjme)**
+**Built with ⚡ by [Darshankumar Joshi](https://github.com/darshjme)** · [@thedarshanjoshi](https://twitter.com/thedarshanjoshi)
 
 *"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन"*
 *Your right is to action alone, never to the fruits thereof.*
