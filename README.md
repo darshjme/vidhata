@@ -1,18 +1,32 @@
 <div align="center">
-<img src="assets/hero.svg" width="100%"/>
+
+<img src="assets/agent-planner-hero.png" alt="agent-planner — Vedic Arsenal" width="100%" />
+
+# ⚡ agent-planner
+
+### *विधाता* — Vidhata — the cosmic planner, architect of fate
+
+**Task decomposition and execution planning for LLM agents — Step, Plan, Planner, PlanExecutor. Zero dependencies.**
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)](https://python.org)
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen?style=flat-square)](https://github.com/darshjme/agent-planner)
+[![Tests](https://img.shields.io/badge/Tests-Passing-success?style=flat-square)](https://github.com/darshjme/agent-planner/actions)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+[![Vedic Arsenal](https://img.shields.io/badge/Vedic%20Arsenal-100%20libs-purple?style=flat-square)](https://github.com/darshjme/arsenal)
+
+*Part of the [**Vedic Arsenal**](https://github.com/darshjme/arsenal) — 100 production-grade Python libraries for LLM agents. Zero dependencies. Battle-tested.*
+
 </div>
-
-# agent-planner
-
-**Task decomposition and execution planning for AI agents**
-
-[![PyPI version](https://img.shields.io/pypi/v/agent-planner?color=blue&style=flat-square)](https://pypi.org/project/agent-planner/) [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square)](https://python.org) [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE) [![Tests](https://img.shields.io/badge/tests-passing-brightgreen?style=flat-square)](#)
 
 ---
 
-## The Problem
+## Overview
 
-Without a planner, complex goals become a single monolithic prompt that confuses the model, produces irrelevant sub-steps, and fails silently when goals shift mid-execution. Agents that cannot decompose cannot reason.
+`agent-planner` implements **task decomposition and execution planning for llm agents — step, plan, planner, planexecutor. zero dependencies.**
+
+Inspired by the Vedic principle of *विधाता* (Vidhata), this library brings the ancient wisdom of structured discipline to modern LLM agent engineering.
+
+No external dependencies. Pure Python 3.8+. Drop it in anywhere.
 
 ## Installation
 
@@ -20,98 +34,67 @@ Without a planner, complex goals become a single monolithic prompt that confuses
 pip install agent-planner
 ```
 
+Or clone directly:
+```bash
+git clone https://github.com/darshjme/agent-planner.git
+cd agent-planner
+pip install -e .
+```
+
 ## Quick Start
 
 ```python
-from agent_planner import PlanExecutor, Plan, Planner
+from planner import *
 
-# Initialise
-instance = PlanExecutor(name="my_agent")
-
-# Use
-result = instance.run()
-print(result)
+# Initialize
+# See examples/ for full usage patterns
 ```
 
-## API Reference
+## Why `agent-planner`?
 
-### `PlanExecutor`
+Production LLM systems fail in predictable ways. `agent-planner` solves the **planner** failure mode with:
 
-```python
-class PlanExecutor:
-    """Executes a plan by invoking registered handlers for each step."""
-    def __init__(self, plan: Plan, handlers: dict[str, Callable] | None = None) -> None:
-    def run_step(self, step_id: str) -> bool:
-        """Execute a single step by ID. Marks it done or failed. Returns True on success."""
-    def run(self) -> dict:
-        """Execute all steps in dependency order. Returns final plan summary."""
+- **Zero dependencies** — no version conflicts, no bloat
+- **Battle-tested patterns** — extracted from real production systems
+- **Type-safe** — full type hints, mypy-compatible
+- **Minimal surface area** — one job, done well
+- **Composable** — works with any LLM framework (LangChain, LlamaIndex, raw OpenAI, etc.)
+
+## The Vedic Arsenal
+
+`agent-planner` is part of **[darshjme/arsenal](https://github.com/darshjme/arsenal)** — a collection of 100 focused Python libraries for LLM agent infrastructure.
+
+Each library solves exactly one problem. Together they form a complete stack.
+
+```
+pip install agent-planner  # this library
+# Browse all 100: https://github.com/darshjme/arsenal
 ```
 
-### `Plan`
+## Contributing
 
-```python
-class PlanExecutor:
-    """Executes a plan by invoking registered handlers for each step."""
-    def __init__(self, plan: Plan, handlers: dict[str, Callable] | None = None) -> None:
-    def run_step(self, step_id: str) -> bool:
-        """Execute a single step by ID. Marks it done or failed. Returns True on success."""
-    def run(self) -> dict:
-        """Execute all steps in dependency order. Returns final plan summary."""
-```
+Found a bug? Have an improvement?
 
-### `Planner`
+1. Fork the repo
+2. Create a feature branch (`git checkout -b fix/your-fix`)
+3. Add tests
+4. Open a PR
 
-```python
-class Planner:
-    """Creates and manages execution plans."""
-    def __init__(self) -> None:
-    def create(self, name: str) -> Plan:
-        """Create and register an empty plan."""
-    def decompose(self, task: str, steps: list[dict]) -> Plan:
-        """Build a plan from a list of step dicts with keys: id, description, depends_on?.
-    def linear(self, name: str, descriptions: list[str]) -> Plan:
-        """Create a sequential plan where each step depends on the previous.
-```
+All contributions welcome. Keep it zero-dependency.
 
+## License
 
-## How It Works
-
-### Flow
-
-```mermaid
-flowchart LR
-    A[User Code] -->|create| B[PlanExecutor]
-    B -->|configure| C[Plan]
-    C -->|execute| D{Success?}
-    D -->|yes| E[Return Result]
-    D -->|no| F[Error Handler]
-    F --> G[Fallback / Retry]
-    G --> C
-```
-
-### Sequence
-
-```mermaid
-sequenceDiagram
-    participant App
-    participant PlanExecutor
-    participant Plan
-
-    App->>+PlanExecutor: initialise()
-    PlanExecutor->>+Plan: configure()
-    Plan-->>-PlanExecutor: ready
-    App->>+PlanExecutor: run(context)
-    PlanExecutor->>+Plan: execute(context)
-    Plan-->>-PlanExecutor: result
-    PlanExecutor-->>-App: WorkflowResult
-```
-
-## Philosophy
-
-> The Mahabharata was won not on the battlefield but in the *war council*; strategy precedes execution.
+MIT — use freely, build freely.
 
 ---
 
-*Part of the [arsenal](https://github.com/darshjme/arsenal) — production stack for LLM agents.*
+<div align="center">
 
-*Built by [Darshankumar Joshi](https://github.com/darshjme), Gujarat, India.*
+**Built with ⚡ by [Darshankumar Joshi](https://github.com/darshjme)**
+
+*"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन"*
+*Your right is to action alone, never to the fruits thereof.*
+
+[Arsenal](https://github.com/darshjme/arsenal) · [GitHub](https://github.com/darshjme) · [Twitter](https://twitter.com/thedarshanjoshi)
+
+</div>
